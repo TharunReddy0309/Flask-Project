@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ result.name }} Details</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='show.css')}}">
+
+</head>
+<body>
+  <header>
+    <a class="name">{{ result.name }}-Data</a>        
+  </header>
+
+  <main>
+    <div class="op-div">
+      <h3>Name of the coin: {{ result.name }}</h3>
+      <p>Symbol: {{ result.symbol }} | ID: {{ result.id }}</p>
+      <p>Rank: {{ result.rank }}</p>
+      <p>Max Supply: {{ result.max_supply }}</p>
+      <p>USD Price: ${{ result.USD_price }}</p>
+      <p> Total Market Price: ${{result.Total_value}} </p>
+    </div>
+
+    <div class='tableop-div'>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Percent change in 1 hr</th>
+            <th>Percent change in 24 hrs</th>
+            <th>Percent change in a Week</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ result.percent_change_1hr }}%</td>
+            <td>{{ result.percent_change_24hr }}%</td>
+            <td>{{ result.percent_change_7d }}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <a href="{{ url_for('home') }}">
+        <button class="home-button">Home</button>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

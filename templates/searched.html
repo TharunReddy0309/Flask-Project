@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='searched.css') }}">
+</head>
+<body>
+    <header>
+        <div class="searchdiv">
+            <a class="searchop">Search Results for "{{ query }}"</a>
+        </div>
+    </header>
+
+    <main>
+        {% if result %}
+            {% for coin in result %}
+                <div class="search-hit-div">
+                    <p class="search-hit">🔍 {{ coin.name }} ({{ coin.symbol }})</p>
+                    <a href="{{ url_for('coindata', coin_id=coin.id) }}">
+                        <button class="viewdetails-button">View Details</button>
+                    </a>
+                </div>
+            {% endfor %}
+                <a href="{{ url_for('home') }}">
+                    <button class="backtohome-button">← Back to home</button>
+                </a>
+        {% else %}
+            <div class="search-flop-div">
+                <p class="search-flop">❌ No matching coins found for "<strong>{{ query }}</strong>"</p>
+                <a href="{{ url_for('home') }}">
+                    <button class="tryagain-button">Try Again</button>
+                </a>
+            </div>
+        {% endif %}
+        <div >
+      
+    </div>
+    </main>
+</body>
+</html>

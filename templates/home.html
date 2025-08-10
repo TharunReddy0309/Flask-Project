@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='home.css')}}">
+</head>
+<body>
+    <header>
+        <div>
+            <a class="headerword">
+                Crypto Currency
+            </a>
+        </div>        
+    </header>
+    <main>
+        <div class="homedata">
+            <form method="POST" action="/">
+                <input type="text" placeholder="Enter Coin Name" name="name" class="Searchbar">
+                <input type="submit" value="Search" class="search-button">
+            </form>
+            <h3 style="margin-top: 40px;">🔥 Top Trending Coins</h3>
+            <div style="display: flex; justify-content: center;  flex-wrap: wrap;margin-top: 0;">
+                {% for coin in top_coins %}
+                    <div class="top" >
+                        <strong>{{ coin.name }} ({{ coin.symbol }})</strong><br>
+                        ${{ "%.2f"|format(coin.quotes.USD.price) }}<br>
+                        <small style="color: {% if coin.quotes.USD.percent_change_24h > 0 %}green{% else %}red{% endif %};">
+                            {{ coin.quotes.USD.percent_change_24h }}%
+                        </small><br>
+                        <a href="{{ url_for('coindata', coin_id=coin.id) }}"><button class="details-button">Details</button></a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="more">
+                <a href="{{ url_for('top50') }}">View more Top Currency details</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

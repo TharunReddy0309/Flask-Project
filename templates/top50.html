@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 50 Coins</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='searched.css') }}">
+</head>
+<body>
+  <header>
+    <div class="searchdiv">
+      <a class="searchop">💰 Top 50 Cryptocurrencies</a>
+    </div>
+  </header>
+
+  <main>
+    {% for result in results %}
+    <div class="search-hit-div">
+      <div>
+        <p class="search-hit">🔹 {{ result.name }} ({{ result.symbol }})</p>
+        <p class="search-hit">Rank: {{ result.rank }}</p>
+      </div>
+      <a href="{{ url_for('coindata', coin_id=result.id) }}">
+        <button class="viewdetails-button">Details</button>
+      </a>
+    </div>
+    {% endfor %}
+
+    <div >
+      <a href="{{ url_for('home') }}">
+        <button class="backtohome-button">← Back to home</button>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
